@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
+from .models import UserInput
 
 
 def input_page(request):
     if request.method == 'POST':
+        user_input_text = request.POST.get('user_input', '')
+        UserInput.objects.create(input_text=user_input_text)
         return redirect('display_page')
     else:
         return render(request, 'members_app/input_page.html')
 
 
+def save_input(request):
+    # Код для обробки введених даних і збереження їх у базу даних
+    return HttpResponse("Дані успішно збережено")
+
+
 def display_page(request):
-    return render(request, 'members_app/display_page.html')
+    user_inputs = UserInput.objects.all()
+    return render(request, 'members_app/display_page.html', {'user_inputs': user_inputs})
 
 
 def session_page(request):

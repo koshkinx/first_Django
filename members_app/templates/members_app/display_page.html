@@ -6,6 +6,11 @@
     <title>Display Page</title>
   </head>
   <body>
-    <h1>Display Page</h1>
+    <h1>User Inputs</h1>
+    <ul>
+        {% for user_input in user_inputs %}
+            <li>{{ user_input.input_text }} - {{ user_input.created_at }}</li>
+        {% endfor %}
+    </ul>
   </body>
 </html>

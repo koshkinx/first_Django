@@ -7,10 +7,10 @@
   </head>
   <body>
     <h1>Input Page</h1>
-    <form method="post">
+    <form action="{% url 'save_input' %}" method="post">
       {% csrf_token %}
-      <!-- Додайте поля форми тут -->
-      <input type="submit" value="Submit" />
+      <input type="text" name="user_input" />
+      <button type="submit">Save</button>
     </form>
   </body>
 </html>
