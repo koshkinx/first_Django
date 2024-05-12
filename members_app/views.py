@@ -17,17 +17,9 @@ def save_input(request):
     return HttpResponse("Дані успішно збережено")
 
 
-# def display_page(request):
-#     user_inputs = UserInput.objects.all()
-#     return render(request, 'members_app/display_page.html', {'user_inputs': user_inputs})
-
-
 def display_page(request):
-    # Отримати дані введені користувачем з сесії
     user_input_text = request.session.get('user_input', '')
-    # Створити об'єкт UserInput і зберегти введений текст
     UserInput.objects.create(input_text=user_input_text)
-    # Отримати всі введені дані з бази даних
     user_inputs = UserInput.objects.all()
     return render(request, 'members_app/display_page.html', {'user_inputs': user_inputs})
 
