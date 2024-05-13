@@ -6,15 +6,19 @@ from django.http import HttpResponse
 def input_page(request):
     if request.method == 'POST':
         user_input_text = request.POST.get('user_input', '')
-        UserInput.objects.create(input_text=user_input_text)
+        request.session['user_input'] = user_input_text
         return redirect('display_page')
     else:
         return render(request, 'members_app/input_page.html')
 
 
 def save_input(request):
-    # Код для обробки введених даних і збереження їх у базу даних
-    return HttpResponse("Дані успішно збережено")
+    if request.method == 'POST':
+        user_input_text = request.POST.get('user_input', '')
+        UserInput.objects.create(input_text=user_input_text)
+        return HttpResponse("Дані успішно збережено")
+    else:
+        return HttpResponse("Метод запроса не поддерживается")
 
 
 def display_page(request):
@@ -25,4 +29,5 @@ def display_page(request):
 
 
 def session_page(request):
-    return render(request, 'members_app/session_page.html')
+    user_input_text = request.session.get('user_input', '')
+    return render(request, 'members_app/session_page.html', {'user_input_text': user_input_text})
