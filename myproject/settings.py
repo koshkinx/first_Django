@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses_app',
     'members_app',
+    'myapp',
+    'logistration',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'NAME': 'mydatabase',    # Назва вашої бази даних
+        'NAME': 'mydatabase1',    # Назва вашої бази даних
         'USER': 'postgres',    # Користувач бази даних
         'PASSWORD': '12345678',    # Пароль користувача бази даних
         'HOST': 'localhost',
@@ -129,3 +131,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTH_USER_MODEL = 'logistration.CustomUser'
